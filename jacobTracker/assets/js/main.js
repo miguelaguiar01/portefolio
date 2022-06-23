@@ -189,8 +189,7 @@ function updateContestsCount(crops) {
 $(document).ready(() => {
     getContests()
     setInterval(function() {
-        //updateContestsTime();
-        //console.log(allData);
+        updateContestsTime();
     }, 1000)
 
     $('.btn[data-crop]').on('click', function() {
