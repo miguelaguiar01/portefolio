@@ -5,6 +5,7 @@ let allData = {}
 
 function diffToString(diff) {
     let dateformated = ''
+    diff.subtract(1, 'hour')
     if (diff.second() > 0) {
         dateformated = (diff.second() < 10 ? '0' + diff.second() : diff.second()) + 's'
     }
