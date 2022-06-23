@@ -3,7 +3,7 @@ import calendar
 import json
 import time
 
-file = open('imported_raw.json')
+file = open('data/imported_raw.json')
 data = json.load(file)
 crops = ["Cactus","Carrot","Cocoa","Melon","Mushroom","Wart","Potato","Pumpkin","Sugar","Wheat"]
 crop_name = ["Cactus","Carrot","Cocoa Beans","Melon","Mushroom","Nether Wart","Potato","Pumpkin","Sugar Cane","Wheat"]
@@ -18,7 +18,7 @@ for i in range(124):
             if(data[i]['Crops'].split(" ")[j] == crops[k]):
                 crop.append(crop_name[k])  
     date = datetime.strptime(" ".join(time), "%d %b %Y %H:%M:%S")
-    timestamp = date.timestamp()
+    timestamp = date.timestamp() + 3600
 
     dict = {
         'season': data[i]['SkyBlock Date'].split(',')[0],
@@ -28,6 +28,6 @@ for i in range(124):
     }
     arr.append(dict)
 jsonString = json.dumps(arr, indent=4)
-jsonFile = open("jacob_data.json", "w")
+jsonFile = open("data/jacob_data.json", "w")
 jsonFile.write(jsonString)
 jsonFile.close()
