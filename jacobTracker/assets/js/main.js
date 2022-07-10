@@ -120,12 +120,15 @@ function getContests(items = null) {
     }
 
     $.ajax({
+
         url: uri,
         crossOrigin: true,
+        crossDomain: true,
         method: 'GET',
         dataType: 'JSON',
 
         success: function(data) {
+            console.log('success!')
             allData = data;
             loadContests(items)
         },
