@@ -1,7 +1,6 @@
 let crop_list = Array()
 let allCrops = ["Cactus", "Sugar Cane", "Nether Wart", "Wheat", "Mushroom", "Cocoa Beans", "Potato", "Melon", "Pumpkin", "Carrot"]
-var year = 218;
-const uri = "https://hypixel-skyblock.fandom.com/api.php?action=query&format=json&prop=revisions&titles=Jacob%27s_Farming_Contest/Events/Year%20" + year + "&formatversion=2&rvprop=content&rvslots=*"
+let uri = './data/jacob_data.json'
 let allData = {}
 
 function diffToString(diff) {
@@ -118,24 +117,25 @@ function getContests(items = null) {
     if (items === null) {
         items = allCrops
     }
+    $.getJSON(uri, function(data) {
+        allData = data;
+        loadContests(items)
+    });
 
-    $.ajax({
+    // $.ajax({
+    //     url: uri,
+    //     crossOrigin: true,
+    //     method: 'GET',
+    //     dataType: 'JSON',
 
-        url: uri,
-        crossOrigin: true,
-        crossDomain: true,
-        method: 'GET',
-        dataType: 'JSON',
-
-        success: function(data) {
-            console.log('success!')
-            allData = data;
-            loadContests(items)
-        },
-        error: function(error) {
-            console.log(error)
-        }
-    })
+    //     success: function(data) {
+    //         allData = data;
+    //         loadContests(items)
+    //     },
+    //     error: function(error) {
+    //         console.log(error)
+    //     }
+    // })
 }
 
 function appendContestTime(parent, datetime) {
@@ -153,7 +153,7 @@ function appendContestTime(parent, datetime) {
         }
     } else {
         diff = moment(moment(moment()).diff(datetime))
-        dateformated = 'Starts: ' + diffToString(diff) + ' ago'
+        dateformated = 'Ends in ' + diffToString(1200 - diff)
         parent.removeClass('bg-light').addClass('bg-danger')
     }
     parent.children('h6').text(dateformated)
