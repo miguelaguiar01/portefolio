@@ -5,7 +5,7 @@ import json
 import time
 import re
 
-year = 218
+year = 219
 url = 'https://hypixel-skyblock.fandom.com/api.php?action=query&format=json&prop=revisions&titles=Jacob%27s_Farming_Contest/Events/Year%20' + str(year) + '&formatversion=2&rvprop=content&rvslots=*'
 urllib.request.urlretrieve(url, 'jacobTracker/data/jacob_raw.json')
 
